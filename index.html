@@ -1,114 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yazaar | Home</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
-    <link rel="stylesheet" href="./css/index.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
     <header>
-        <h1 class="animateFadeIn">Yazaar</h1>
+      <h1 class="delayedCharAnimation">Yazaar</h1>
     </header>
-    <section id="me" class="pushIn">
-        <h2>
-            <span class="translateUp">
-                <span class="animateFadeIn inlineBlock blockMarking greenFont" data-animationName="fadeInScale" id="arrow1">>></span>
-            </span>
-            <span id="meText" class="animateFadeIn inlineBlock greenFont" data-animateAfter="#arrow1">Me</span>
+    <div id="bg">
+      <div class="bg-item" style="width: 800px; animation-delay: 0s; animation-duration: 10s; --rotation: 10deg"></div>
+      <div class="bg-item" style="width: 350px; animation-delay: 0s; animation-duration: 15s; --rotation: -5deg"></div>
+      <div class="bg-item" style="width: 350px; animation-delay: 0s; animation-duration: 19s; --rotation: 8deg"></div>
+      <div class="bg-item" style="width: 350px; animation-delay: 0s; animation-duration: 25s; --rotation: 0deg"></div>
+      <div class="bg-item" style="width: 350px; animation-delay: 0s; animation-duration: 30s; --rotation: -10deg"></div>
+      <div class="bg-item" style="width: 600px; animation-delay: 5s; animation-duration: 40s; --rotation: 25deg"></div>
+      <div class="bg-item" style="width: 250px; animation-delay: 13s; animation-duration: 45s; --rotation: -35deg"></div>
+      <div class="bg-item" style="width: 450px; animation-delay: 20s; animation-duration: 55s; --rotation: 20deg"></div>
+      <div class="bg-item" style="width: 550px; animation-delay: 25s; animation-duration: 20s; --rotation: 11deg"></div>
+      <div class="bg-item" style="width: 200px; animation-delay: 29s; animation-duration: 51s; --rotation: 0deg"></div>
+      <div class="bg-item" style="width: 280px; animation-delay: 35s; animation-duration: 47s; --rotation: 23deg"></div>
+      <div class="bg-item" style="width: 400px; animation-delay: 50s; animation-duration: 68s; --rotation: 40deg"></div>
+      <div class="bg-item" style="width: 500px; animation-delay: 55s; animation-duration: 72s; --rotation: -8deg"></div>
+    </div>
+    <div class="content">
+      <div class="content-item">
+        <h2 class="title">
+          <span class="green chevron">>></span>
+          <span class="green">About</span>
+          <span class="silver name-switch" style="display: inline-block">Yazaar</span>
         </h2>
-        <p class="simpleFadeIn" data-animateAfter="#meText" id="me1">Hi I am Yazaar! Some might know me as Jesper though.</p>
-        <p class="simpleFadeIn" data-animateAfter="#meText" id="me2">I am <span id="age">_</span> years old and have lived in Sweden my entire life.</p>
-        <p class="simpleFadeIn" data-animateAfter="#me1" id="me3">Currently studying “Degree of Bachelor of Science with a major in Informatics - specialisation Systems Development”.</p>
-        <p class="simpleFadeIn" data-animateAfter="#me1" id="me4">On my spare time am I probably on Twitch, YouTube, programming or gaming.</p>
-        <p class="simpleFadeIn" data-animateAfter="#me3" id="me5">Might stream on Twitch from time to time but don't expect me to be active, same with my YouTube.</p>
-        <p class="simpleFadeIn" data-animateAfter="#me3" id="me6">I know Python, C# and web development the best but also some C++, Ruby and other languages.</p>
-    </section>
-    <section id="socials" class="pushIn">
-        <h2 class="pushUp">
-            <span class="translateUp">
-                <span class="animateFadeIn inlineBlock blockMarking greenFont pushAway" data-animationName="fadeInScale" id="arrow2">>></span>
-            </span>
-            <span class="animateFadeIn inlineBlock greenFont" id="socialsText" data-animateAfter="#arrow2">Socials</span>
-        </h2>
-        <div id="twitchLink" class="socialWrapper inlineBlock blockMarking simpleFadeIn active" data-animateAfter="#socialsText" data-animationName="fadeScale">
-            <i class="fab fa-twitch"></i>
-            <i class="fas fa-chevron-down"></i>
+        <div class="image-with-text">
+          <img src="./img/origins.png" />
+          <div class="details">
+            <h3 class="green">Origins</h3>
+            <p class="silver">
+              I am Jesper, sometimes better known as Yazaar. I am a <span id="age"></span> years old guy from <span style="color: #caca6a">Swe</span
+              ><span style="color: #6060cc">den</span>.
+            </p>
+            <div style="margin-top: 20px;">
+              <a target="_blank" rel="noopener noreferrer" href="https://github.com/yazaar"><img src="./img/GitHub-tag.png" style="border: #07C007 solid 1px;" /></a>
+            </div>
+          </div>
         </div>
-        <div id="youtubeLink" class="socialWrapper inlineBlock blockMarking simpleFadeIn" data-animationName="fadeScale" data-animateAfter="#socialsText">
-            <i class="fab fa-youtube"></i>
-            <i class="fas fa-chevron-down"></i>
+        <div class="image-with-text" style="margin-top: 50px">
+          <img src="./img/software.png" />
+          <div class="details">
+            <h3 class="green">Software</h3>
+            <p class="silver">
+              Software developer in JavaScript, TypeScript, React, C#, Python, NoSQL, SQL and historically many more for the better or worse...
+            </p>
+          </div>
         </div>
-        <div id="discordLink" class="socialWrapper inlineBlock blockMarking simpleFadeIn" data-animateAfter="#socialsText" data-animationName="fadeScale">
-            <i class="fab fa-discord"></i>
-            <i class="fas fa-chevron-down"></i>
+        <div class="image-with-text" style="margin-top: 50px">
+          <img src="./img/degree.png" />
+          <div class="details">
+            <h3 class="green">Degree</h3>
+            <p class="silver">
+              Bachelor degree with the title
+              <span class="green">Degree of Bachelor of Science with a major in Informatics - specialisation Systems Development</span>.
+            </p>
+          </div>
         </div>
-        <div id="twitterLink" class="socialWrapper inlineBlock blockMarking simpleFadeIn" data-animateAfter="#socialsText" data-animationName="fadeScale">
-            <i class="fab fa-twitter"></i>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-        <div id="githubLink" class="socialWrapper inlineBlock blockMarking simpleFadeIn" data-animateAfter="#socialsText" data-animationName="fadeScale">
-            <i class="fab fa-github"></i>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-        <div id="socialBlinder" class="simpleFadeIn" data-animationName="fadeScale" data-animateAfter="#twitchLink">
-            <section id="twitchLinkInfo" class="socialInfo active">
-                <h3 class="socialInfoTitle">Twitch</h3>
-                <iframe src="https://player.twitch.tv/?channel=yazaar&autoplay=false&parent=yazaar.github.io" id="twitch-video"></iframe>
-                <iframe src="https://www.twitch.tv/embed/yazaar/chat?darkpopout&parent=yazaar.github.io" id="twitch-chat"></iframe>
-            </section>
-            <section id="youtubeLinkInfo" class="socialInfo">
-                <h3 class="socialInfoTitle">YouTube</h3>
-                <div class="videoSplit">
-                    <section>
-                        <h3 class="socialInfoSubtitle">Featured</h3>
-                        <iframe class="YTVideo" src="https://www.youtube.com/embed/jV7i-dB8Quc" allowfullscreen></iframe>
-                    </section>
-                    <section>
-                        <h3 class="socialInfoSubtitle">Newest</h3>
-                        <iframe class="YTVideo" id="latestVideo" src="https://www.youtube.com/embed/ofNPVIquT3s" allowfullscreen></iframe>
-                    </section>
-                </div>
-            </section>
-            <section id="discordLinkInfo" class="socialInfo">
-                <h3 class="socialInfoTitle">Discord</h3>
-                <p class="socialInfoText">Feel free to join my dead discord server</p>
-                <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/YTDnJUe" class="cardWrapper">
-                    <i class="fab fa-discord"></i>
-                    <section class="rightCardWrap">
-                        <h3>Discord - Yarmy Squad</h3>
-                        <p>https://discord.gg/YTDnJUe</p>
-                    </section>
-                </a>
-            </section>
-            <section id="twitterLinkInfo" class="socialInfo">
-                <h3 class="socialInfoTitle">Twitter</h3>
-                <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark"
-                    href="https://twitter.com/YazaarVideos?ref_src=twsrc%5Etfw">Tweets by YazaarVideos</a>
-                <script async src="https://platform.twitter.com/widgets.js"></script>
-            </section>
-            <section id="githubLinkInfo" class="socialInfo">
-                <h3 class="socialInfoTitle">Github</h3>
-                <p class="socialInfoText">You can find a whole lot of my coding projects on my github page.<br>Feel free to check it out but prepare for nightmares...</p>
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/yazaar" class="cardWrapper">
-                    <i class="fab fa-github"></i>
-                    <section class="rightCardWrap">
-                        <h3>Github Projects</h3>
-                        <p>https://github.com/yazaar</p>
-                    </section>
-                </a>
-            </section>
-        </div>
-    </section>
-    <section id="projects" class="pushIn">
-        <h2>
-            <span class="translateUp">
-                <span class="animateFadeIn inlineBlock blockMarking greenFont pushAway" data-animationName="fadeInScale" id="arrow3">>></span>
-            </span>
-            <span id="projectsText" class="animateFadeIn inlineBlock greenFont" data-animateAfter="#arrow3">Projects</span>
+      </div>
+      <div class="content-item">
+        <h2 class="title" style="margin-top: 20px;">
+          <span class="green chevron">>></span>
+          <span class="green">Projects</span>
         </h2>
         <section class="cardList">
             <div class="cardItem rotateIn" id="project1" data-animationName="rotateIn" data-animateAfter="#projectsText">
@@ -222,29 +185,8 @@
                 </div>
             </div>
         </section>
-    </section>
-    <section id="websites" class="pushIn">
-        <h2>
-            <span class="translateUp">
-                <span class="animateFadeIn inlineBlock blockMarking greenFont pushAway" data-animationName="fadeInScale" id="arrow4">>></span>
-            </span>
-            <span id="websitesText" class="animateFadeIn inlineBlock greenFont" data-animateAfter="#arrow4">Websites</span>
-        </h2>
-        <section class="cardList">
-            <div class="cardItem rotateIn" id="website1" data-animationName="rotateIn" data-animateAfter="#websitesText">
-                <a class="codeLink">No github link</a>
-                <a class="projectLink">No site link</a>
-                <div class="projectContent">
-                    <img src="./img/Empty.png" alt="Preview of Custom YouTube Player website">
-                    <h3>Empty</h3>
-                    <div class="fill">
-                        <p>I don't have any right now, feel free to check out my projects above instead.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </section>
-
-    <script src="./js/index.js?version=1"></script>
-</body>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+  </body>
 </html>

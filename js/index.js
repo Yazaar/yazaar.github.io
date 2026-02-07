@@ -1,155 +1,88 @@
-(function(){
-    var allSocials = document.querySelectorAll('.socialInfo');
-    var currentSocial = document.querySelector('#twitchLinkInfo');
-    var blinder = document.querySelector('#socialBlinder');
+(function () {
+  function defaultedInt(raw, defaultValue) {
+    let v = parseInt(raw);
 
-    function iterateCallback(selectorName, callback) {
-        var e = document.querySelectorAll(selectorName);
-        for (var i = 0; i < e.length; i++) {
-            callback(e[i]);
-        }
+    return Number.isNaN(v) ? defaultValue : v;
+  }
+
+  function setAge() {
+    var today = new Date();
+    var birthday = new Date('2001-01-28T23:00:00.000Z');
+    var yearToday = today.getUTCFullYear();
+    var thisYearBirthday = new Date(birthday).setUTCFullYear(yearToday);
+
+    var years = today.getUTCFullYear() - birthday.getUTCFullYear();
+    if (today - thisYearBirthday > 0) {
+      var lastBirthdayYear = yearToday;
+    } else {
+      var lastBirthdayYear = yearToday - 1;
+      years--;
     }
 
-    function animateFadeInElement(e, force=false) {
-        if (force === false) {
-            var animateAfter = e.getAttribute('data-animateAfter');
-            if (animateAfter !== null) {
-                var afterThis = document.querySelector(animateAfter);
-                if (afterThis !== null) {
-                    afterThis.addEventListener('animationend', function(e2){
-                        if (afterThis !== e2.target) {
-                            return;
-                        }
-                        animateFadeInElement(e, true);
-                        return;
-                    });
-                    e.style.opacity = 0;
-                    return;
-                }
-            }
-        }
-        var animationName = e.getAttribute('data-animationName') || 'fadeIn';
-        var fadeTime = 75;
-        var text = e.innerText;
-        e.innerHTML = '';
-        e.style.opacity = '';
-        e.style.transform = 'translateX(1rem)';
-        e.style.animation = 'endFadeIn ' + fadeTime + 'ms ' + (fadeTime * (text.length + 2)) + 'ms ease-in-out forwards';
-        for (var i = 0; i < text.length; i++) {
-            var span = document.createElement('span');
-            var fadeStart = fadeTime * (text.length - i);
-            span.innerText = text[i];
-            span.style.opacity = 0;
-            span.style.animation = animationName + ' ' + fadeTime + 'ms ' + fadeStart + 'ms ease-in-out forwards';
-            e.appendChild(span);
-        }
+    var lastBirthday = new Date(birthday).setUTCFullYear(lastBirthdayYear);
+
+    var days = Math.floor((today - lastBirthday) / (1000 * 60 * 60 * 24));
+    var ageStr = years + ' (+' + days + ' days)';
+    var ageElement = document.querySelector('#age');
+    if (ageElement !== null) {
+      ageElement.innerText = ageStr;
+    }
+  }
+
+  document.querySelectorAll('.delayedCharAnimation').forEach((e) => {
+    const chars = e.innerText.split('');
+    e.innerHTML = '';
+
+    const step = defaultedInt(e.getAttribute('data-step'), 200);
+    const base = defaultedInt(e.getAttribute('data-base'), 500);
+
+    const duration = defaultedInt(e.getAttribute('data-duration'), Math.abs(step));
+    const endDuration = defaultedInt(e.getAttribute('data-endDuration'), duration);
+
+    for (let i = 0; i < chars.length; i++) {
+      let s = document.createElement('span');
+      const delay = base + step * i;
+      s.innerText = chars[i];
+      s.style.animationDelay = `${delay}ms`;
+      s.style.animationDuration = `${duration}ms`;
+      e.appendChild(s);
     }
 
-    function animateSimpleFadeIn(e, force=false) {
-        if (force === false) {
-            var animateAfter = e.getAttribute('data-animateAfter');
-            if (animateAfter !== null) {
-                var afterThis = document.querySelector(animateAfter);
-                if (afterThis !== null) {
-                    afterThis.addEventListener('animationend', function(e2){
-                        if (afterThis !== e2.target) {
-                            return;
-                        }
-                        animateSimpleFadeIn(e, true);
-                        return;
-                    });
-                    e.style.opacity = 0;
-                    return;
-                }
-            }
+    const delay = step > 0 ? base + step * chars.length : base + step * -1;
+    e.style.animationDelay = `${delay}ms`;
+    e.style.animationDuration = `${endDuration}ms`;
+  });
+
+  document.querySelectorAll('.name-switch').forEach((e) => {
+    let version = 0;
+    let isIn = true;
+
+    const onAnimationEnd = () => {
+      if (isIn) {
+        setTimeout(() => {
+          e.classList.remove('fadeInDown');
+          e.classList.add('fadeOutUp');
+        }, 3000);
+      } else {
+        e.classList.add('fadeInDown');
+        e.classList.remove('fadeOutUp');
+
+        version = (version + 1) % 2;
+        switch (version) {
+          case 0:
+            e.innerText = 'Yazaar';
+            break;
+          case 1:
+            e.innerText = 'Jesper';
+            break;
         }
-        var animationName = e.getAttribute('data-animationName') || 'simpleFadeIn';
-        e.style.opacity = '';
-        e.style.animation = animationName + ' 250ms ease-in-out forwards';
-    }
-    
-    function changeAge() {    
-        var today = new Date();
-        var birthday = new Date('2001/01/28 23:00:00 UTC');
-        var yearToday = today.getUTCFullYear();
-        var thisYearBirthday =new Date(birthday).setUTCFullYear(yearToday);
-        
-        var years = today.getUTCFullYear() - birthday.getUTCFullYear();
-        if (today - thisYearBirthday > 0) {
-            var lastBirthdayYear = yearToday;
-        } else {
-            var lastBirthdayYear = yearToday-1;
-            years--;
-        }
+      }
+      isIn = !isIn;
+    };
 
-        var lastBirthday = new Date(birthday).setUTCFullYear(lastBirthdayYear);
-        
-        var days = Math.floor((today - lastBirthday) / (1000 * 60 * 60 * 24));
-        var ageStr = years + ' (+' + days + ' days)';
-        var ageElement = document.querySelector('#age');
-        if (ageElement !== null) {
-            ageElement.innerText = ageStr;
-        }
-    }
+    e.addEventListener('animationend', onAnimationEnd);
+    setTimeout(onAnimationEnd, Math.floor(Math.random() * 5000));
+  });
 
-    function registerSocials() {
-        var e = document.querySelectorAll('.socialWrapper');
-        for (var i = 0; i < e.length; i++) {
-            processSocial(e[i], e, i)
-        }
-    }
-
-    function processSocial(e, all_e) {
-        var e_id = e.id;
-        e.addEventListener('mouseover', function(){
-            for (var i = 0; i < all_e.length; i++) {
-                all_e[i].classList.remove('active');
-            }
-            this.classList.add('active');
-            showSocial(e_id + 'Info');
-        });
-        return true;
-    }
-
-    function showSocial(socialId) {
-        currentSocial = document.querySelector('#' + socialId);
-        if (currentSocial === null) { return; }
-        for (var i = 0; i < allSocials.length; i++) {
-            allSocials[i].classList.remove('active');
-        }
-        
-        currentSocial.classList.add('active');
-        blinder.style.height = currentSocial.offsetHeight + 'px';
-    }
-
-    function getLatestVideo() {
-        var xml = new XMLHttpRequest();
-        xml.onreadystatechange = function() {
-            if (xml.readyState === 4){
-                if(xml.status === 200){
-                    document.querySelector('#latestVideo').src = 'https://www.youtube.com/embed/' + JSON.parse(xml.response).items[0].id.videoId;
-                } else {
-                    console.log('Unable to reach the YouTube API successfully');
-                }
-            }
-        }
-        xml.open('get', 'https://www.googleapis.com/youtube/v3/search?part=snippet%2Cid&channelId=UCaJnr3RRxwrYkMbdJ0NPFFw&maxResults=1&order=date&type=video&videoEmbeddable=true&key=AIzaSyAeRjFfM1R2opdGUmaN7dtn7UTtS7hOEJM');
-        xml.send();
-    }
-
-    function updateBlinder() {
-        if (currentSocial === null) { return; }
-        blinder.style.height = currentSocial.offsetHeight + 'px';
-    }
-    
-    changeAge();
-    iterateCallback('.animateFadeIn', animateFadeInElement);
-    iterateCallback('.simpleFadeIn', animateSimpleFadeIn);
-    iterateCallback('.rotateIn', animateSimpleFadeIn);
-    registerSocials();
-    getLatestVideo();
-    updateBlinder();
-    
-    window.addEventListener('resize', updateBlinder);
-
+  setAge();
 })();
