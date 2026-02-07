@@ -81,7 +81,7 @@
     };
 
     e.addEventListener('animationend', onAnimationEnd);
-    setTimeout(onAnimationEnd, Math.floor(Math.random() * 5000));
+    setTimeout(onAnimationEnd, Math.floor(Math.random() * 3000));
   });
 
   setAge();
